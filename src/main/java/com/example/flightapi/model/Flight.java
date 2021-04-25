@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -26,10 +28,13 @@ public class Flight {
     private Integer flightNumber;
 
     @Column(length = 3)
+    @NotBlank
     private String departureAirportIATACode;
 
     @Column(length = 3)
+    @NotBlank
     private String arrivalAirportIATACode;
 
+    @NotNull
     private Date departureDate;
 }
