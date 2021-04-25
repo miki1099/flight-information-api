@@ -8,28 +8,26 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.Date;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Flight {
+public class BaggageCargoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long flightId;
+    private Long id;
 
-    @Min(1000)
-    @Max(9999)
-    private Integer flightNumber;
+    @Min(1)
+    @Max(999)
+    private int weight;
 
-    @Column(length = 3)
-    private String departureAirportIATACode;
+    @Column(length = 2)
+    private String weightUnit;
 
-    @Column(length = 3)
-    private String arrivalAirportIATACode;
-
-    private Date departureDate;
+    @Min(1)
+    @Max(999)
+    private int pieces;
 }
