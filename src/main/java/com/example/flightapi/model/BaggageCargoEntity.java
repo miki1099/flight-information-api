@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "baggage_cargo_entity")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,15 +22,10 @@ public class BaggageCargoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(1)
-    @Max(999)
     private int weight;
 
     @Column(length = 2)
-    @NotBlank
     private String weightUnit;
 
-    @Min(1)
-    @Max(999)
     private int pieces;
 }

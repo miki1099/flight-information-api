@@ -12,9 +12,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "flight")
 @Getter
 @Setter
 public class Flight {
@@ -23,18 +25,13 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long flightId;
 
-    @Min(1000)
-    @Max(9999)
     private Integer flightNumber;
 
     @Column(length = 3)
-    @NotBlank
     private String departureAirportIATACode;
 
     @Column(length = 3)
-    @NotBlank
     private String arrivalAirportIATACode;
 
-    @NotNull
     private Date departureDate;
 }

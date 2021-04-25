@@ -6,10 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
+
 @Entity
+@Table(name = "cargo")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,9 +27,9 @@ public class FlightCargo {
     @NotNull
     private Flight flight;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id")
     private Set<BaggageCargoEntity> baggage;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id")
     private Set<BaggageCargoEntity> cargo;
 }
