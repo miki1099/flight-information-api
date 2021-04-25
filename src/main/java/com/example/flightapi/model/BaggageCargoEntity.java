@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @AllArgsConstructor
@@ -25,6 +26,7 @@ public class BaggageCargoEntity {
     private int weight;
 
     @Column(length = 2)
+    @NotBlank
     private String weightUnit;
 
     @Min(1)
