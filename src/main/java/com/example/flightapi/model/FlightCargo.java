@@ -24,7 +24,6 @@ public class FlightCargo {
     private Long id;
 
     @OneToOne
-    @NotNull
     private Flight flight;
 
     @OneToMany(mappedBy = "id")

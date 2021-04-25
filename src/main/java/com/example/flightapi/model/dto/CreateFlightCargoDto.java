@@ -14,7 +14,7 @@ public class CreateFlightCargoDto {
 
     @Min(1000)
     @Max(9999)
-    private final long flightId;
+    private final int flightId;
 
     private final Set<BaggageCargoEntityDto> baggage;
 

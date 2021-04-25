@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class FlightWeightDto {
 
-    private final int cargoWeight;
-    private final int baggageWeight;
-    private final int totalWeight;
+    private final double cargoWeight;
+    private final double baggageWeight;
+    private final double totalWeight;
 }

@@ -3,10 +3,7 @@ package com.example.flightapi.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -17,9 +14,11 @@ public class CreateFlightDto {
     @Max(9999)
     private final Integer flightNumber;
 
+    @Size(min = 3, max = 3)
     @NotBlank
     private final String departureAirportIATACode;
 
+    @Size(min = 3, max = 3)
     @NotBlank
     private final String arrivalAirportIATACode;
 
