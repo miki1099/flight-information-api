@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 
@@ -26,9 +27,11 @@ public class FlightCargo {
     @OneToOne
     private Flight flight;
 
-    @OneToMany(mappedBy = "id")
-    private Set<BaggageCargoEntity> baggage;
+    @OneToMany
+    @JoinColumn(name = "flight_cargo_id")
+    private List<Baggage> baggage;
 
-    @OneToMany(mappedBy = "id")
-    private Set<BaggageCargoEntity> cargo;
+    @OneToMany
+    @JoinColumn(name = "flight_cargo_id")
+    private List<Cargo> cargo;
 }

@@ -10,12 +10,12 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "baggage_cargo_entity")
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@MappedSuperclass
 public class BaggageCargoEntity {
 
     @Id

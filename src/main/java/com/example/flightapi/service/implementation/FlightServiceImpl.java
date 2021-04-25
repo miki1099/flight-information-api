@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -55,7 +56,7 @@ public class FlightServiceImpl implements FlightService {
         return flight;
     }
 
-    private double countWeight(Set<BaggageCargoEntity> baggage, String weightUnit) {
+    private <T extends BaggageCargoEntity> double countWeight(List<T> baggage, String weightUnit) {
         double weightCounter = 0;
         for (BaggageCargoEntity baggageCargo : baggage) {
             if (baggageCargo.getWeightUnit().equals(weightUnit)) {

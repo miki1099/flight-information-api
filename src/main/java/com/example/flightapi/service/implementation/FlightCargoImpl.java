@@ -1,11 +1,11 @@
 package com.example.flightapi.service.implementation;
 
 import com.example.flightapi.exception.FlightNotFoundException;
-import com.example.flightapi.model.BaggageCargoEntity;
-import com.example.flightapi.model.Flight;
-import com.example.flightapi.model.FlightCargo;
+import com.example.flightapi.model.*;
 import com.example.flightapi.model.dto.BaggageCargoEntityDto;
 import com.example.flightapi.model.dto.CreateFlightCargoDto;
+import com.example.flightapi.repository.BaggageRepository;
+import com.example.flightapi.repository.CargoRepository;
 import com.example.flightapi.repository.FlightCargoRepository;
 import com.example.flightapi.repository.FlightRepository;
 import com.example.flightapi.service.FlightCargoService;
@@ -13,25 +13,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class FlightCargoImpl implements FlightCargoService {
 
-    private final FlightCargoRepository cargoRepository;
+    private final FlightCargoRepository flightCargoRepository;
     private final FlightRepository flightRepository;
+    private final BaggageRepository baggageRepository;
+    private final CargoRepository cargoRepository;
 
     @Override
     @Transactional
     public void createCargo(CreateFlightCargoDto newCargo) {
         FlightCargo flightToSave = mapFlightCargo(newCargo);
-        cargoRepository.save(flightToSave);
+        flightCargoRepository.save(flightToSave);
     }
 
-    Flight getOneSafe(int flightId) {
+    Flight getOneSafe(Long flightId) {
         Optional<Flight> flight = flightRepository.findFirstByFlightId(flightId);
         if(flight.isPresent()) {
             return flight.get();
@@ -43,15 +43,25 @@ public class FlightCargoImpl implements FlightCargoService {
     private FlightCargo mapFlightCargo(CreateFlightCargoDto newCargo) {
         FlightCargo flightCargo = new FlightCargo();
         flightCargo.setFlight(getOneSafe(newCargo.getFlightId()));
-        flightCargo.setBaggage(mapBaggageCargo(newCargo.getBaggage()));
-        flightCargo.setCargo(mapBaggageCargo(newCargo.getCargo()));
+        try {
+            flightCargo.setBaggage(
+                    baggageRepository.saveAll(mapBaggageCargo(newCargo.getBaggage(), Baggage.class))
+            );
+            flightCargo.setCargo(
+                    cargoRepository.saveAll(mapBaggageCargo(newCargo.getCargo(), Cargo.class))
+            );
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
         return flightCargo;
     }
 
-    private Set<BaggageCargoEntity> mapBaggageCargo(Set<BaggageCargoEntityDto> baggageSet) {
-        Set<BaggageCargoEntity> baggageToSave = new HashSet<>();
+    private <T extends BaggageCargoEntity> List<T> mapBaggageCargo(List<BaggageCargoEntityDto> baggageSet, Class<T> type) throws IllegalAccessException, InstantiationException {
+        List<T> baggageToSave = new ArrayList<>();
         for (BaggageCargoEntityDto baggage: baggageSet) {
-            BaggageCargoEntity baggageBuffer = new BaggageCargoEntity();
+            T baggageBuffer = type.newInstance();
             baggageBuffer.setPieces(baggage.getPieces());
             baggageBuffer.setWeight(baggage.getWeight());
             baggageBuffer.setWeightUnit(baggage.getWeightUnit());

@@ -14,5 +14,5 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     Set<Flight> findAllByDepartureAirportIATACode(String IATACode);
 
-    Optional<Flight> findFirstByFlightId(int flightId);
+    Optional<Flight> findFirstByFlightId(Long flightId);
 }
