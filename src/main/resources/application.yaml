@@ -15,3 +15,6 @@ spring:
         dll-auto: create
 server:
   port: 8081
+  error:
+    include-message: always
+    include-binding-errors: always
