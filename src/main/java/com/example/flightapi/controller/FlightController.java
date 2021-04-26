@@ -19,7 +19,7 @@ public class FlightController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/flight/add")
-    private void addFlight(@Valid @RequestBody CreateFlightDto createFlightDto) {
-        flightService.createFlight(createFlightDto);
+    private long addFlightAndGetId(@Valid @RequestBody CreateFlightDto createFlightDto) {
+        return flightService.createFlightAndReturnId(createFlightDto);
     }
 }

@@ -27,9 +27,10 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     @Transactional
-    public void createFlight(CreateFlightDto newFlight) {
+    public long createFlightAndReturnId(CreateFlightDto newFlight) {
         Flight flightToSave = mapFlight(newFlight);
         flightRepository.save(flightToSave);
+        return flightToSave.getFlightId();
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.Date;
 
 public interface FlightService {
 
-    void createFlight(CreateFlightDto newFlight);
+    long createFlightAndReturnId(CreateFlightDto newFlight);
 
     FlightWeightDto getFlightWeights(int flightNumber, Date date, String weightUnit);
 }
