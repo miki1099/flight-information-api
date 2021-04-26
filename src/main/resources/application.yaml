@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/airport_flight_info?serverTimezone=CET
-    username: root
-    password: root1234
+    url: jdbc:mysql://remotemysql.com/ynqv2VtHTp?serverTimezone=CET&createDatabaseIfNotExist=true
+    username: ynqv2VtHTp
+    password: ksqu3rMN4G
     driverClassName: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     continue-on-error: true
