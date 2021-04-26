@@ -2,9 +2,9 @@
 
 ##### Task made for smart4aviation recruitment process 
 
-#####You can test Api by swagger on:
+##### You can test Api by swagger on:
 
-https://flight-information-api.com/swagger-ui/index.html#/
+https://flight-information-api.herokuapp.com/swagger-ui/index.html#/
 
 ## available API
 - get
