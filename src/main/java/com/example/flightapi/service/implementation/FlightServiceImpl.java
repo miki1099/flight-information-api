@@ -36,7 +36,7 @@ public class FlightServiceImpl implements FlightService {
     @Override
     public FlightWeightDto getFlightWeights(int flightNumber, Date date, String weightUnit) {
         Optional<FlightCargo> flight = cargoRepository
-                .findFirstByFlight_FlightIdAndFlight_DepartureDate(flightNumber, date);
+                .findFirstByFlight_FlightNumberAndFlight_DepartureDate(flightNumber, date);
         if (flight.isPresent()) {
             FlightCargo flightCargo = flight.get();
             double cargoWeight = countWeight(flightCargo.getCargo(), weightUnit);

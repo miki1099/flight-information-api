@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface FlightCargoRepository extends JpaRepository<FlightCargo, Long> {
 
-    Optional<FlightCargo> findFirstByFlight_FlightIdAndFlight_DepartureDate(long flightId, Date departureDate);
+    Optional<FlightCargo> findFirstByFlight_FlightNumberAndFlight_DepartureDate(int flightNumber, Date departureDate);
 
     Set<FlightCargo> findAllByFlight_ArrivalAirportIATACode(String IATACode);
 
