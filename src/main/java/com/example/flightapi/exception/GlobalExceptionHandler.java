@@ -16,8 +16,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(bodyOfResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = {BadTimeFormatException.class})
-    protected ResponseEntity<Object> handleBadTimeFormat(RuntimeException ex, WebRequest request) {
+    @ExceptionHandler(value = {BadTimeFormatException.class, CargoForFlightAlreadyExistsException.class})
+    protected ResponseEntity<Object> handleBadTimeFormatAndCargoRepeat(RuntimeException ex, WebRequest request) {
         String bodyOfResponse = ex.getMessage();
         return new ResponseEntity<>(bodyOfResponse, HttpStatus.BAD_REQUEST);
     }

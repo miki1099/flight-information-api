@@ -1,5 +1,6 @@
 package com.example.flightapi.service.implementation;
 
+import com.example.flightapi.exception.CargoForFlightAlreadyExistsException;
 import com.example.flightapi.exception.FlightNotFoundException;
 import com.example.flightapi.model.*;
 import com.example.flightapi.model.dto.BaggageCargoEntityDto;
@@ -27,6 +28,10 @@ public class FlightCargoImpl implements FlightCargoService {
     @Override
     @Transactional
     public void createCargo(CreateFlightCargoDto newCargo) {
+        if(flightCargoRepository.existsByFlight_FlightId(newCargo.getFlightId())) {
+            throw new CargoForFlightAlreadyExistsException("For flight id: " + newCargo.getFlightId()
+                    + " cargo already exists");
+        }
         FlightCargo flightToSave = mapFlightCargo(newCargo);
         flightCargoRepository.save(flightToSave);
     }
