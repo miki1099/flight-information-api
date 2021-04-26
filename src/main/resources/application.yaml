@@ -4,15 +4,12 @@ spring:
     username: root
     password: root1234
     driverClassName: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    continue-on-error: true
   jpa:
     generate-ddl: true
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
-        dialect: org.hibernate.dialect.MySQL5Dialect
-        dll-auto: create
+    hibernate:
+      ddl-auto: update
 server:
   port: 8081
   error:
