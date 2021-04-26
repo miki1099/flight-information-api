@@ -10,9 +10,9 @@ import java.util.Set;
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long> {
 
-    Set<Flight> findAllByArrivalAirportIATACode(String IATACode);
+    int countAllByArrivalAirportIATACode(String IATACode);
 
-    Set<Flight> findAllByDepartureAirportIATACode(String IATACode);
+    int countAllByDepartureAirportIATACode(String IATACode);
 
     Optional<Flight> findFirstByFlightId(Long flightId);
 }
