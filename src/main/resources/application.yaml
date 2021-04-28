@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://remotemysql.com/ynqv2VtHTp?serverTimezone=CET&createDatabaseIfNotExist=true
-    username: ynqv2VtHTp
-    password: ksqu3rMN4G
+    url: jdbc:mysql://eu-cdbr-west-01.cleardb.com/heroku_85258873ec623a5?reconnect=true
+    username: ba37f26d9a6cc4
+    password: c2eff91f
     driverClassName: com.mysql.cj.jdbc.Driver
     initialization-mode: always
     continue-on-error: true
